@@ -1,130 +1,81 @@
-# WiFi-Statistics
+# Embedded Systems project
 
+👨‍👩‍👧‍👦 WiFi & BLE person count estimator
 
-```
-/*
-Version:		V2.0
-Author:			Vincent
-Create Date:	2020/9/16
-Note:
-	V2.0 : Add IoT function, push data to ThingSpeak.com.
-*/
-```
+<div align="center">
 
-![main](md_pic/main.jpg)
+![]()
 
-[toc]
+<!-- prettier-ignore -->
+[Tutorial]()
+| [Demo video]()
+| [How it works]()
 
-# OVERVIEW
+</div>
 
+🔢 Count the approximate number of people in an area \
+📚 Great for tracking busyness over time \
+📡 Counts unique MAC addresses \
+📈 Usually overestimates \
+✨ Complete project, not a library
 
+## Installation
 
-## Intruduce
+![ESP32](https://img.shields.io/static/v1?style=for-the-badge&message=ESP32&color=E7352C&logo=Espressif&logoColor=FFFFFF&label=)
+![Arduino IDE](https://img.shields.io/static/v1?style=for-the-badge&message=Arduino+IDE&color=00979D&logo=Arduino&logoColor=FFFFFF&label=)
 
-[Makerfabs home page](https://www.makerfabs.com/)
+This is a physical project, as well as a software project! You'll need...
 
-[Makerfabs Wiki](https://makerfabs.com/wiki/index.php?title=Main_Page)
+1. An ESP32 chip. Preferrably a development board. If you want something that
+   you can reuse for other projects, the [Adafruit HUZZAH32] is a good choice.
+   If you just want a cheap $10 board for this project only, you can snag one of
+   the many [ESP32 boards on Amazon].
+2. A way to power your ESP32. This is most likely a USB charging brick. If you
+   are truly dedicated to wireless deployment, you can use your own battery
+   solution. But for the intended deployment case of an indoor stationary spot,
+   a wired-to-wall solution is probably the most sensible. Your charging brick
+   doesn't need to be fancy. As long as it can supply ~500mA of current, that's
+   sufficient. You can find [cheap $4/pc chargers on Amazon].
+3. An OLED screen. This will be used to display the count of how many people are
+   estimated to be in the area. This project's code expects an 0.96 in display,
+   but you can probably fiddle with the code to get it to work with other sizes.
+   You can find [0.96 in OLED screens on Amazon].
 
-In fact ,this is a wifi sniffer. It sniffs out the wifi signals of smartphones in its range to make a rough count of traffic. Compared to the camera, or security door, smaller, hidden, easy to carry.
-This project is changed from [ESP-EOS/ESP32-WiFi-Sniffer](https://github.com/ESP-EOS/ESP32-WiFi-Sniffer)
+In my own experimentation and development, I used {TODO: Add board name}.
 
+To configure the hardware, you should match this circuit:
 
-## Equipment list
+Specifically, the OLED screen is connected to power (of course) with its {TODO:
+Explain pin connections in English}.
 
-- [MakePython ESP32](https://www.makerfabs.com/makepython-esp32.html)
-- [MakePython A9G GPRS/GPS Expansion](https://www.makerfabs.com/makepython-a9g-gprs-gps-shield.html)
+To install this project onto an ESP32 board, you'll need to download the latest
+released `compsci-412-project.zip` folder from the GitHub Releases page. Inside
+this folder is a `compsci-412-project/` folder which has a
+`compsci412-project/compsci-412-project.ino` file which is the main file of this
+project.
 
-SD card reader modules such as MakePython Audio are available, but require pin changes.
+You'll also need the following Arduino IDE libraries! You can install these
+using the builtin Library manager tool.
 
-- Micro SD Card
+- Library #1
+- Library #2
 
+## Usage
 
+Once you've downloaded the application code to your ESP32, you just need to
+deploy it someplace! The easiest spot is, of course, right where you're sitting.
+Plug in the ESP32 to the power brick, make sure you've got the OLED output
+screen hooked up, and see how many WiFi signals are in your area!
 
+## Development
 
-# STEPS
+![C++](https://img.shields.io/static/v1?style=for-the-badge&message=C%2B%2B&color=00599C&logo=C%2B%2B&logoColor=FFFFFF&label=)
+![Arduino IDE](https://img.shields.io/static/v1?style=for-the-badge&message=Arduino+IDE&color=00979D&logo=Arduino&logoColor=FFFFFF&label=)
+![ESP32](https://img.shields.io/static/v1?style=for-the-badge&message=ESP32&color=E7352C&logo=Espressif&logoColor=FFFFFF&label=)
 
-## Prepare And Burn
+TODO: Add development description
 
-**If you have any questions，such as how to install the development board, how to download the code, how to install the library. Please refer to :[Makerfabs_FAQ](https://github.com/Makerfabs/Makerfabs_FAQ)**
-
-- Connect ESP32 to PC .
-- Use Arduino upload .ino file in "/Project_WiFi-Statistics/wifi_probe".
-- Insert a micro SD card.
-- GPRS SIM Card.(If you need IoT function.)
-- Restart ESP32.
-- Wait a moment ,Lcd screen will show some data.
-
-![1](md_pic/log.jpg)
-
-## People Counting 
-
-- Connect to mobile power/lithium battery.
-- If "Card Mount Failed" appears, you need to replug the SD Card and restart it.
-
-![1](md_pic/card_fail.jpg)
-
-- If all goes well, the LCD screen displays detail data.
-
-![show](md_pic/show.jpg)
-
-
-## Analysis Data
-
-- Copy the SD card TXT file beginning with "log" into the project folder.
-- Use command line, run wifi_count.py.
-- A line diagram of the time and surrounding terminal relationships is displayed.
-
-![count](md_pic/count.jpg)
-
-## IoT Function
-
-IoT funcgtion have now been added. Data can be transmitted to Internet of Things websites in real time. You can see historical traffic curves at ThingSpeak.com.
-
-- Get a ThingSpeak™ account.
-
-![account](md_pic/get_account.jpg)
-
-- Create a channel for collecting data. 
-
-![create_channel](md_pic/create_channel.jpg)
-
-- Set channel, like name and some params.
-
-![Set_channel](md_pic/set_channel.jpg)
-
-- And system will give you two api_keys. Upload need write key.
-
-![aap_key](md_pic/app_key.jpg)
-
-- Change code, add your write api_key. Mine is "2ZOQP7ZGJ9OVGU6X".
-
-```c++
-String command = "AT+HTTPGET=\"http://api.thingspeak.com/update?api_key=2ZOQP7ZGJ9OVGU6X&field1=";
-```
-
-- Uncomment  “#define THINGSPEAK”
-
-```c++
-//#define THINGSPEAK
-
-#ifdef THINGSPEAK
-
-#define DEBUG true //true: debug on; false:debug off
-bool SIM800C_ON = false;
-int my_index = 0;
-
-#define MP_RX1 21
-#define MP_TX1 22
-
-#define A9G_POWER 27
-#define A9G_RST 33
-
-#endif
-```
-
-- Upload code to ESP32.
-- Insert a SIM card, need support GPRS.
-- Restart ESP32, wait a moment.
-- If upload successfully, webpage will show newest data.
-
-![web_ui](md_pic/web-ui.jpg)
+[adafruit huzzah32]: https://www.adafruit.com/product/3405
+[esp32 boards on amazon]: https://www.amazon.com/s?k=esp32+board
+[cheap $4/pc chargers on amazon]: https://www.amazon.com/s?k=usb+charger
+[0.96 in oled screens on amazon]: https://www.amazon.com/s?k=arduino+oled
