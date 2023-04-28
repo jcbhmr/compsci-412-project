@@ -25,3 +25,7 @@ inline void setup_wifi_sniffer() {
   esp_wifi_set_promiscuous(true);
   esp_wifi_set_promiscuous_rx_cb(&handle_packet);
 }
+
+inline void set_channel() {
+  
+}

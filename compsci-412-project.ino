@@ -1,22 +1,7 @@
-/**
- * Based on https://github.com/Makerfabs/Project_WiFi-Statistics and
- * https://github.com/ESP-EOS/ESP32-WiFi-Sniffer projects.
- */
+#include <Arduino.h>
 
-#include <freertos/FreeRTOS.h>
-#include <esp_wifi.h>
-#include <esp_wifi_types.h>
-#include <esp_system.h>
-#include <esp_event.h>
-#include <esp_event_loop.h>
-#include <nvs_flash.h>
-#include <driver/gpio.h>
-#include <SPI.h>
-#include <SD.h>
-#include <FS.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
-
+#include "ieee_802_11_mac_header.h"
+#include "mac_address.h"
 
 void handle_packet(void* buffer, wifi_promiscuous_pkt_type_t type) {
   if (type != WIFI_PKT_MGMT) {
@@ -27,16 +12,11 @@ void handle_packet(void* buffer, wifi_promiscuous_pkt_type_t type) {
   const auto packet = (wifi_promiscuous_pkt_t*) buffer;
   // wifi_promiscuous_pkt_t* => ieee_802_11_mac_header*
   const auto header = (ieee_802_11_mac_header*) packet->payload;
+
+  Serial.print("Here's the header: ")
   print_ieee_802_11_mac_header(header);
+  Serial.println();
 }
-
-
-esp_err_t event_handler(void* ctx, system_event_t* event);
-void setup_wifi_sniffer();
-void set_channel(uint8_t channel);
-void handle_packet(void* buffer, wifi_promiscuous_pkt_type_t type);
-void setup();
-void loop();
 
 
 auto mac_last_seen = std::map<mac_address, long>();
@@ -49,69 +29,12 @@ wifi_country_t wifi_country = {
   .nchan = 13
 };
 
-// the setup function runs once when you press reset or power the board
-void setup()
-{
-  // initialize digital pin 5 as an output.
+void setup() {
   Serial.begin(115200);
-  delay(10);
-
-  //LCD init
-  Wire.begin(MP_ESP32_I2C_SDA, MP_ESP32_I2C_SCL);
-  // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
-  if (!display.begin(SSD1306_SWITCHCAPVCC, MP_ESP32_SSD1306_I2C_ADDR))
-  { // Address 0x3C for 128x32
-    Serial.println(F("SSD1306 allocation failed"));
-    for (;;)
-      ; // Don't proceed, loop forever
-  }
-  display.clearDisplay();
-  lcd_text("WIFI SNIFFER");
-
-#ifdef THINGSPEAK
-  thingspeak_init();
-#endif
-
-  //SD(SPI)
-  pinMode(MP_A9G_SD_CS, OUTPUT);
-  digitalWrite(MP_A9G_SD_CS, HIGH);
-  SPI.begin(MP_A9G_SPI_SCK, MP_A9G_SPI_MISO, MP_A9G_SPI_MOSI);
-  SPI.setFrequency(1000000);
-  if (!SD.begin(MP_A9G_SD_CS, SPI))
-  {
-    Serial.println("Card Mount Failed");
-    lcd_text("Card Mount Failed");
-    while (1)
-      ;
-  }
-  else
-  {
-    Serial.println("SD OK");
-  }
-
-  int log_index = 0;
-  while (1)
-  {
-    filename = "/log" + String(log_index) + ".txt";
-    Serial.println("Check if the " + filename + " exists ");
-    if (!SD.exists(filename))
-    {
-      //Open log
-      writeFile(SD, filename, "WIFI COUNT:");
-      break;
-    }
-    log_index++;
-  }
-
-  lcd_text(filename);
-
-  //Init sniffer
-  wifi_sniffer_init();
+  setup_wifi_sniffer();
 }
 
-// the loop function runs over and over again forever
-void loop()
-{
+void loop() {
   Serial.printf("______________CHANNEL:%02d____________\n", channel);
   delay(1000); // wait for a second
 
