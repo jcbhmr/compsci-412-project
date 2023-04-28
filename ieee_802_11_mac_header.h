@@ -1,3 +1,4 @@
+#pragma once
 #include <cstdint>
 #include "mac_address.h"
 
@@ -36,9 +37,9 @@ struct ieee_802_11_mac_header {
    * source address may be identical to the transmitter address and the
    * destination address may be identical to the receiver address.
    */
-  mac_address address_1;
-  mac_address address_2;
-  mac_address address_3;
+  uint8_t address_1[6];
+  uint8_t address_2[6];
+  uint8_t address_3[6];
 
   /**
    * Sequence Control: Contains a 4-bit fragment number subfield, used for
@@ -47,7 +48,7 @@ struct ieee_802_11_mac_header {
    */
   uint16_t sequence_control[2];
 
-  mac_address address_4;
+  uint8_t address_4[6];
 
   // There's the data and CRC parts that aren't included in the header.
 };

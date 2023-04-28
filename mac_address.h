@@ -1,12 +1,8 @@
 #pragma once
 #include <cstdint>
-#include <Arduino>
+#include <Arduino.h>
 
-struct mac_address {
-  uint8_t data[6];
-}
-
-inline void print_mac_address(mac_address address) {
+inline void print_mac_address(uint8_t* address) {
   Serial.printf(
     "%02x:%02x:%02x:%02x:%02x:%02x",
     address[0],
@@ -14,6 +10,6 @@ inline void print_mac_address(mac_address address) {
     address[2],
     address[3],
     address[4],
-    address[5],
+    address[5]
   );
 }

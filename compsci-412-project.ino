@@ -2,19 +2,15 @@
 #include <freertos/FreeRTOS.h>
 #include <esp_wifi.h>
 #include <esp_wifi_types.h>
-#include <unordered_map>
+#include <map>
 #include "ieee_802_11_mac_header.h"
 #include "mac_address.h"
+#include "wifi_sniffer.h"
 
-auto mac_address_last_seen = std::unordered_map<mac_address, long>();
+auto mac_address_last_seen = std::map<uint8_t*, long>();
 
 uint8_t level = 0;
 uint8_t channel = 1;
-wifi_country_t wifi_country = {
-  .cc = "CN",
-  .schan = 1,
-  .nchan = 13
-};
 
 void setup() {
   Serial.begin(115200);
@@ -46,24 +42,20 @@ void loop() {
     // ESP32 event loop still runs IN PARALLEL to this delay.
     vTaskDelay(1000);
 
-    wifi_sniffer_set_channel(channel);
+    set_channel(channel);
     // 1-13 inclusive both ends, not 0-13 exclusive end.
     channel = (channel % 13) + 1;
   }
 
-  // Clean any old addresses. We do this right before any reporting.
-  std::erase_if(mac_address_last_seen, [](const auto& item) {
-    auto const& [mac_address, last_seen] = item;
+  for (auto [mac_address, last_seen] : mac_address_last_seen) {
+    auto last_seen_ago = millis() - last_seen;
+    if (last_seen_ago > 60 * 1000) {
+      continue;
+    }
 
-    auto ago = millis() - last_seen;
-    return ago > 60 * 1000;
-  });
-
-  for (const auto [mac_address, last_seen] : mac_address_last_seen) {
     Serial.print("mac_address=");
     print_mac_address(mac_address);
     Serial.print(", ");
-    auto last_seen_ago = millis() - last_seen;
     Serial.printf("last_seen %dms ago", last_seen_ago);
     Serial.println();
   }
