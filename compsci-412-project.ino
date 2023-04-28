@@ -2,10 +2,11 @@
 #include <freertos/FreeRTOS.h>
 #include <esp_wifi.h>
 #include <esp_wifi_types.h>
+#include <unordered_map>
 #include "ieee_802_11_mac_header.h"
 #include "mac_address.h"
 
-auto mac_address_last_seen = std::map<mac_address, long>();
+auto mac_address_last_seen = std::unordered_map<mac_address, long>();
 
 uint8_t level = 0;
 uint8_t channel = 1;
