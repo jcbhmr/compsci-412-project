@@ -1,3 +1,32 @@
+/**
+ * @brief This program uses an ESP32-based development board to scan for Wi-Fi
+ *        access points and devices. It periodically switches the Wi-Fi channel
+ *        and logs any MAC addresses that it sees. It also periodically cleans up
+ *        the logs to remove stale MAC addresses that have not been seen in a while.
+ *
+ * This program requires an ESP32-based development board, the Arduino IDE,
+ * and the following libraries:
+ * - Arduino.h
+ * - freertos/FreeRTOS.h
+ * - esp_wifi.h
+ * - esp_wifi_types.h
+ *
+ * The only library you'll need to explicitly install using the Arduino Library Manager
+ * is the FreeRTOS.h provider.
+ *
+ * Make sure you also have the following header files that are bundled with the main
+ * .ino project file too:
+ * - ieee_802_11_mac_header.h
+ * - mac_address.h
+ * - wifi_sniffer.h
+ *
+ * Once uploaded, open the Serial Monitor at a baud rate of 115200 to view the
+ * results. The program will periodically print the MAC addresses of any
+ * access points and devices it detects, along with how long ago they were seen.
+ *
+ * @file
+ */
+
 #include <Arduino.h>
 #include <freertos/FreeRTOS.h>
 #include <esp_wifi.h>
