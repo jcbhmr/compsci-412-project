@@ -1,76 +1,45 @@
-/*
-Change from https://github.com/ESP-EOS/ESP32-WiFi-Sniffer
+/**
+ * Based on https://github.com/Makerfabs/Project_WiFi-Statistics and
+ * https://github.com/ESP-EOS/ESP32-WiFi-Sniffer projects.
+ */
 
-*/
-
-#include "freertos/FreeRTOS.h"
-#include "esp_wifi.h"
-#include "esp_wifi_types.h"
-#include "esp_system.h"
-#include "esp_event.h"
-#include "esp_event_loop.h"
-#include "nvs_flash.h"
-#include "driver/gpio.h"
-
-//Makerfabs init
-#include "makerfabs_pin.h"
-#include "SPI.h"
-#include "SD.h"
-#include "FS.h"
+#include <freertos/FreeRTOS.h>
+#include <esp_wifi.h>
+#include <esp_wifi_types.h>
+#include <esp_system.h>
+#include <esp_event.h>
+#include <esp_event_loop.h>
+#include <nvs_flash.h>
+#include <driver/gpio.h>
+#include <SPI.h>
+#include <SD.h>
+#include <FS.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-//#define THINGSPEAK
+struct mac_address {
+  uint8_t data[6];
+}
 
-#ifdef THINGSPEAK
 
-#define DEBUG true //true: debug on; false:debug off
-bool SIM800C_ON = false;
-int my_index = 0;
 
-#define MP_RX1 21
-#define MP_TX1 22
+esp_err_t event_handler(void* ctx, system_event_t* event);
+void setup_wifi_sniffer();
+void set_channel(uint8_t channel);
+void handle_packet(void* buffer, wifi_promiscuous_pkt_type_t type);
+void setup();
+void loop();
 
-#define A9G_POWER 27
-#define A9G_RST 33
 
-#endif
+auto mac_last_seen = std::map<mac_address, long>();
 
-String filename = "";
-Adafruit_SSD1306 display(MP_ESP32_SSD1306_WIDTH, MP_ESP32_SSD1306_HEIGHT, &Wire, MP_ESP32_SSD1306_RST);
-
-#define WIFI_CHANNEL_SWITCH_INTERVAL (500)
-#define WIFI_CHANNEL_MAX (13)
-
-uint8_t mac_lib[100][6];
-int mac_count = 0;
-
-uint8_t level = 0, channel = 1;
-
-static wifi_country_t wifi_country = {.cc = "CN", .schan = 1, .nchan = 13}; //Most recent esp32 library struct
-
-typedef struct
-{
-  unsigned frame_ctrl : 16;
-  unsigned duration_id : 16;
-  uint8_t addr1[6]; /* receiver address */
-  uint8_t addr2[6]; /* sender address */
-  uint8_t addr3[6]; /* filtering address */
-  unsigned sequence_ctrl : 16;
-  uint8_t addr4[6]; /* optional */
-} wifi_ieee80211_mac_hdr_t;
-
-typedef struct
-{
-  wifi_ieee80211_mac_hdr_t hdr;
-  uint8_t payload[0]; /* network data ended with 4 bytes csum (CRC32) */
-} wifi_ieee80211_packet_t;
-
-static esp_err_t event_handler(void *ctx, system_event_t *event);
-static void wifi_sniffer_init(void);
-static void wifi_sniffer_set_channel(uint8_t channel);
-static const char *wifi_sniffer_packet_type2str(wifi_promiscuous_pkt_type_t type);
-static void wifi_sniffer_packet_handler(void *buff, wifi_promiscuous_pkt_type_t type);
+uint8_t level = 0;
+uint8_t channel = 1;
+wifi_country_t wifi_country = {
+  .cc = "CN",
+  .schan = 1,
+  .nchan = 13
+};
 
 // the setup function runs once when you press reset or power the board
 void setup()

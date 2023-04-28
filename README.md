@@ -1,6 +1,7 @@
 # Embedded Systems project
 
 👨‍👩‍👧‍👦 WiFi & BLE person count estimator
+💡 Based on [Makerfabs/Project_WiFi-Statistics] and [ESP-EOS/ESP32-WiFi-Sniffer]
 
 <div align="center">
 
@@ -75,7 +76,11 @@ screen hooked up, and see how many WiFi signals are in your area!
 
 TODO: Add development description
 
+<!-- prettier-ignore-start -->
 [adafruit huzzah32]: https://www.adafruit.com/product/3405
 [esp32 boards on amazon]: https://www.amazon.com/s?k=esp32+board
 [cheap $4/pc chargers on amazon]: https://www.amazon.com/s?k=usb+charger
 [0.96 in oled screens on amazon]: https://www.amazon.com/s?k=arduino+oled
+[Makerfabs/Project_WiFi-Statistics]: https://github.comMakerfabs/Project_WiFi-Statistics#readme
+[ESP-EOS/ESP32-WiFi-Sniffer]: https://github.com/ESP-EOS/ESP32-WiFi-Sniffer#readme
+<!-- prettier-ignore-end -->
