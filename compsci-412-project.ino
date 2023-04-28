@@ -17,10 +17,18 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
-struct mac_address {
-  uint8_t data[6];
-}
 
+void handle_packet(void* buffer, wifi_promiscuous_pkt_type_t type) {
+  if (type != WIFI_PKT_MGMT) {
+    return;
+  }
+
+  // void* => wifi_promiscuous_pkt_t*
+  const auto packet = (wifi_promiscuous_pkt_t*) buffer;
+  // wifi_promiscuous_pkt_t* => ieee_802_11_mac_header*
+  const auto header = (ieee_802_11_mac_header*) packet->payload;
+  print_ieee_802_11_mac_header(header);
+}
 
 
 esp_err_t event_handler(void* ctx, system_event_t* event);

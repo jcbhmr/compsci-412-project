@@ -1,4 +1,5 @@
 #include <cstdint>
+#include "mac_address.h"
 
 /**
  * @see https://witestlab.poly.edu/blog/802-11-wireless-lan-2/
@@ -50,3 +51,14 @@ struct ieee_802_11_mac_header {
 
   // There's the data and CRC parts that aren't included in the header.
 };
+
+inline void print_ieee_802_11_mac_header(ieee_802_11_mac_header* header) {
+  Serial.print("address_1=");
+  print_mac_address(header->address_1);
+  Serial.print(", address_2=");
+  print_mac_address(header->address_2);
+  Serial.print(", address_3=");
+  print_mac_address(header->address_3);
+  Serial.print(", address_4=");
+  print_mac_address(header->address_4);
+}
