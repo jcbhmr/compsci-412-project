@@ -33,7 +33,6 @@ void handle_packet(void* buffer, wifi_promiscuous_pkt_type_t type) {
 }
 
 uint8_t channel = 1;
-// You'll get a report every (13*5)-ish seconds.
 void loop() {
   for (int i = 0; i < 13; i++) {
     set_channel(channel);
@@ -42,7 +41,7 @@ void loop() {
 
     // We use vTaskDelay() instead of delay() so that the handle_packet() and the
     // ESP32 event loop still runs IN PARALLEL to this delay.
-    vTaskDelay(5000);
+    vTaskDelay(6000);
 
     // 1-13 inclusive both ends, not 0-13 exclusive end.
     channel = (channel % 13) + 1;
@@ -50,7 +49,7 @@ void loop() {
     int n = 0;
     for (auto [mac_address, last_seen] : mac_address_last_seen) {
       auto last_seen_ago = millis() - last_seen;
-      if (last_seen_ago > 60 * 1000) {
+      if (last_seen_ago > 13 * 7000) {
         mac_address_last_seen.erase(mac_address);
       }
 
