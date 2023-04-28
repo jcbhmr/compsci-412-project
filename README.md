@@ -1,6 +1,6 @@
 # Embedded Systems project
 
-👨‍👩‍👧‍👦 WiFi & BLE person count estimator
+👨‍👩‍👧‍👦 WiFi & BLE person count estimator \
 💡 Based on [Makerfabs/Project_WiFi-Statistics] and [ESP-EOS/ESP32-WiFi-Sniffer]
 
 <div align="center">
@@ -81,6 +81,6 @@ TODO: Add development description
 [esp32 boards on amazon]: https://www.amazon.com/s?k=esp32+board
 [cheap $4/pc chargers on amazon]: https://www.amazon.com/s?k=usb+charger
 [0.96 in oled screens on amazon]: https://www.amazon.com/s?k=arduino+oled
-[Makerfabs/Project_WiFi-Statistics]: https://github.comMakerfabs/Project_WiFi-Statistics#readme
+[Makerfabs/Project_WiFi-Statistics]: https://github.com/Makerfabs/Project_WiFi-Statistics#readme
 [ESP-EOS/ESP32-WiFi-Sniffer]: https://github.com/ESP-EOS/ESP32-WiFi-Sniffer#readme
 <!-- prettier-ignore-end -->
