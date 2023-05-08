@@ -11,6 +11,7 @@
 // Must be defined elsewhere!
 void handle_packet(void* buffer, wifi_promiscuous_pkt_type_t type);
 
+// This is a copy of what the example code I followed used.
 wifi_country_t wifi_country = {
   .cc = "CN",
   .schan = 1,
@@ -21,6 +22,7 @@ static esp_err_t handle_event_loop(void* ctx, system_event_t* event) {
   return ESP_OK;
 }
 
+// This is also almost a copy from the demo I used.
 inline void setup_wifi_sniffer() {
   tcpip_adapter_init();
   ESP_ERROR_CHECK(esp_event_loop_init(handle_event_loop, NULL));

@@ -48,6 +48,7 @@ struct ieee_802_11_mac_header {
    */
   uint16_t sequence_control[2];
 
+  // See above for address info.
   mac_address address_4;
 
   // There's the data and CRC parts that aren't included in the header.
