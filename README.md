@@ -7,7 +7,7 @@
 
 <div align="center">
 
-[![](https://i.imgur.com/7kVg93O.png)](https://www.youtube.com/watch?v=R-2aqAtgXY8)
+![](https://i.imgur.com/CW4YoAl.png)
 
 [Demo video](https://www.youtube.com/watch?v=R-2aqAtgXY8)
 
@@ -62,6 +62,14 @@ Once you've downloaded the application code to your ESP32, you just need to
 deploy it someplace! The easiest spot is, of course, right where you're sitting.
 Plug in the ESP32 to the power brick, make sure you've got the OLED output
 screen hooked up, and see how many WiFi MAC addresses are in your area!
+
+<div align="center">
+
+[![](https://i.imgur.com/7kVg93O.png)](https://www.youtube.com/watch?v=R-2aqAtgXY8)
+
+[Person counter demo - YouTube](https://www.youtube.com/watch?v=R-2aqAtgXY8)
+
+</div>
 
 ### Legal
 
