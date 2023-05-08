@@ -1,25 +1,16 @@
-![🚧 Under construction 👷‍♂️](https://i.imgur.com/LEP2R3N.png)
-
 # Embedded Systems project
 
-👨‍👩‍👧‍👦 WiFi & BLE person count estimator \
+👨‍👩‍👧‍👦 WiFi person count estimator \
 💡 Based on [Makerfabs/Project_WiFi-Statistics] and [ESP-EOS/ESP32-WiFi-Sniffer]
 
 <div align="center">
 
-![]()
-
-<!-- prettier-ignore -->
-[Tutorial]()
-| [Demo video]()
-| [How it works]()
+[![](https://img.youtube.com/vi/R-2aqAtgXY8/0.jpg)](https://www.youtube.com/watch?v=R-2aqAtgXY8)
 
 </div>
 
-🔢 Count the approximate number of people in an area \
-📚 Great for tracking busyness over time \
 📡 Counts unique MAC addresses \
-📈 Usually overestimates \
+📚 Great for tracking busyness over time \
 ✨ Complete project, not a library
 
 ## Installation
@@ -39,36 +30,30 @@ This is a physical project, as well as a software project! You'll need...
    a wired-to-wall solution is probably the most sensible. Your charging brick
    doesn't need to be fancy. As long as it can supply ~500mA of current, that's
    sufficient. You can find [cheap $4/pc chargers on Amazon].
-3. An OLED screen. This will be used to display the count of how many people are
-   estimated to be in the area. This project's code expects an 0.96 in display,
-   but you can probably fiddle with the code to get it to work with other sizes.
-   You can find [0.96 in OLED screens on Amazon].
+3. An LCD screen. This will be used to display the count of how many people are
+   estimated to be in the area (by MAC addresses). This project's code expects a
+   16x2 display, but you can probably fiddle with the code to get it to work
+   with other sizes. You can find [16x2 LCD screens on Amazon].
 
-In my own experimentation and development, I used {TODO: Add board name}.
+In my own experimentation and development, I used the [DOIT ESP32 DEVKIT V1].
 
 To configure the hardware, you should match this circuit:
 
-Specifically, the OLED screen is connected to power (of course) with its {TODO:
-Explain pin connections in English}.
+<div align="center">
 
-To install this project onto an ESP32 board, you'll need to download the latest
-released `compsci-412-project.zip` folder from the GitHub Releases page. Inside
-this folder is a `compsci-412-project/` folder which has a
-`compsci412-project/compsci-412-project.ino` file which is the main file of this
-project.
+![](https://www.circuitschools.com/wp-content/uploads/2020/09/Interfacing-16X2-LCD-module-with-ESP-32-without-using-I2C-adapter.webp)
 
-You'll also need the following Arduino IDE libraries! You can install these
-using the builtin Library manager tool.
+</div>
 
-- Library #1
-- Library #2
+You'll also need to install the "FreeRTOS" library from the Arduino Library
+Manager. We need this library to use the `vTaskDelay()` function.
 
 ## Usage
 
 Once you've downloaded the application code to your ESP32, you just need to
 deploy it someplace! The easiest spot is, of course, right where you're sitting.
 Plug in the ESP32 to the power brick, make sure you've got the OLED output
-screen hooked up, and see how many WiFi signals are in your area!
+screen hooked up, and see how many WiFi MAC addresses are in your area!
 
 ## Development
 
@@ -76,13 +61,16 @@ screen hooked up, and see how many WiFi signals are in your area!
 ![Arduino IDE](https://img.shields.io/static/v1?style=for-the-badge&message=Arduino+IDE&color=00979D&logo=Arduino&logoColor=FFFFFF&label=)
 ![ESP32](https://img.shields.io/static/v1?style=for-the-badge&message=ESP32&color=E7352C&logo=Espressif&logoColor=FFFFFF&label=)
 
-TODO: Add development description
+This project was developed using the Arduino IDE and an ESP32. You can get the
+project running locally using `git clone` and then opening the main
+`compsci-412-project.ino` in the Arduino IDE. You'll need an actual ESP32 to run
+the code!
 
 <!-- prettier-ignore-start -->
 [adafruit huzzah32]: https://www.adafruit.com/product/3405
 [esp32 boards on amazon]: https://www.amazon.com/s?k=esp32+board
 [cheap $4/pc chargers on amazon]: https://www.amazon.com/s?k=usb+charger
-[0.96 in oled screens on amazon]: https://www.amazon.com/s?k=arduino+oled
+[16x2 LCD screens on Amazon]: https://www.amazon.com/s?k=arduino+16x2+lcd
 [Makerfabs/Project_WiFi-Statistics]: https://github.com/Makerfabs/Project_WiFi-Statistics#readme
 [ESP-EOS/ESP32-WiFi-Sniffer]: https://github.com/ESP-EOS/ESP32-WiFi-Sniffer#readme
 <!-- prettier-ignore-end -->
