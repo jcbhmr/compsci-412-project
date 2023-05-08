@@ -77,10 +77,12 @@ with WiFi signals:
 ## Related
 
 There's some other interesting projects dealing with WiFi person detection that
-are pretty cool! 😎
+are pretty cool! 😲
 
 - [schollz/howmanypeoplearearound: Count the number of people around you by monitoring wifi signals](https://github.com/schollz/howmanypeoplearearound#readme)
 - [cyberman54/ESP32-Paxcounter: Wifi & BLE driven passenger flow metering with cheap ESP32 boards](https://github.com/cyberman54/ESP32-Paxcounter#readme)
+- [ESP-EOS/ESP32-WiFi-Sniffer: Simple WiFi sniffer for boards based on the Espressif Systems ESP32 module](https://github.com/ESP-EOS/ESP32-WiFi-Sniffer#readme)
+- [Makerfabs/Project_WiFi-Statistics](https://github.com/Makerfabs/Project_WiFi-Statistics#readme)
 
 ## Development
 
