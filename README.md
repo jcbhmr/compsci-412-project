@@ -16,7 +16,7 @@
 📡 Counts unique MAC addresses \
 📚 Great for tracking busyness over time \
 ✨ Complete project, not a library \
-👨‍💻 Make as a class project for _Embedded Systems_ at UW-Whitewater
+👨‍💻 Make as a class project for Embedded Systems at UW-Whitewater
 
 ## Installation
 
