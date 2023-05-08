@@ -102,4 +102,5 @@ code!
 [ESP-EOS/ESP32-WiFi-Sniffer]: https://github.com/ESP-EOS/ESP32-WiFi-Sniffer#readme
 [this is not legal advice]: https://notlegaladvice.law/
 [Installing ESP32 in Arduino IDE (Windows, Mac OS X, Linux) | Random Nerd Tutorials]: https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/
+[DOIT ESP32 DEVKIT V1]:  https://www.circuitstate.com/wp-content/cache/all/pinouts/doit-esp32-devkit-v1-wifi-development-board-pinout-diagram-and-reference/index.html
 <!-- prettier-ignore-end -->
