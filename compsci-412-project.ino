@@ -75,6 +75,12 @@ void loop() {
   lcd.setCursor(0, 0);
   lcd.print("Scan chan ");
   lcd.print(channel);
+  // "Scan chan 1"
+  // "Scan chan 13"
+  // "Scan chan 13"
+  //             ^
+  // "Scan chan 1 "
+  lcd.print(" ");
 
   // We use vTaskDelay() instead of delay() so that the handle_packet() and the
   // ESP32 event loop still runs IN PARALLEL to this delay.
@@ -102,4 +108,11 @@ void loop() {
   lcd.setCursor(0, 1);
   lcd.print(n);
   lcd.print(" MAC addrs");
+  // "1 MAC addrs"
+  // "10 MAC addrs"
+  // "100 MAC addrs"
+  // "1 MAC addrsrs"
+  //             ^^
+  // "1 MAC addrs  "
+  lcd.print("  ");
 }
