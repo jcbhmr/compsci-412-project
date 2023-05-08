@@ -1,17 +1,22 @@
-# Embedded Systems project
+<!-- ![🗝️ Archived! 👴](https://i.imgur.com/9vmkYS4.png) -->
+
+# Person counter
 
 👨‍👩‍👧‍👦 WiFi person count estimator \
 💡 Based on [Makerfabs/Project_WiFi-Statistics] and [ESP-EOS/ESP32-WiFi-Sniffer]
 
 <div align="center">
 
-[![](https://img.youtube.com/vi/R-2aqAtgXY8/0.jpg)](https://www.youtube.com/watch?v=R-2aqAtgXY8)
+[![](https://i.imgur.com/7kVg93O.png)](https://www.youtube.com/watch?v=R-2aqAtgXY8)
+
+[Demo video](https://www.youtube.com/watch?v=R-2aqAtgXY8)
 
 </div>
 
 📡 Counts unique MAC addresses \
 📚 Great for tracking busyness over time \
-✨ Complete project, not a library
+✨ Complete project, not a library \
+👨‍💻 Make as a class project for _Embedded Systems_ at UW-Whitewater
 
 ## Installation
 
@@ -55,6 +60,25 @@ deploy it someplace! The easiest spot is, of course, right where you're sitting.
 Plug in the ESP32 to the power brick, make sure you've got the OLED output
 screen hooked up, and see how many WiFi MAC addresses are in your area!
 
+### Legal
+
+I am not qualified to remark on whether or not this MAC address sniffing is
+legal or not in your area. [This is not legal advice]. With that said, here are
+some discussions and other resources about the legal side of tracking people
+with WiFi signals:
+
+- [What is legality of monitoring traffic for mac addresses · Issue #4 · schollz/howmanypeoplearearound](https://github.com/schollz/howmanypeoplearearound/issues/4)
+- [Wi-Fi location analytics | ICO](https://ico.org.uk/media/for-organisations/documents/1560691/wi-fi-location-analytics-guidance.pdf)
+- [18 U.S. Code § 2511 - Interception and disclosure of wire, oral, or electronic communications prohibited | U.S. Code | US Law | LII / Legal Information Institute](https://www.law.cornell.edu/uscode/text/18/2511)
+
+## Related
+
+There's some other interesting projects dealing with WiFi person detection that
+are pretty cool! 😎
+
+- [schollz/howmanypeoplearearound: Count the number of people around you by monitoring wifi signals](https://github.com/schollz/howmanypeoplearearound#readme)
+- [cyberman54/ESP32-Paxcounter: Wifi & BLE driven passenger flow metering with cheap ESP32 boards](https://github.com/cyberman54/ESP32-Paxcounter#readme)
+
 ## Development
 
 ![C++](https://img.shields.io/static/v1?style=for-the-badge&message=C%2B%2B&color=00599C&logo=C%2B%2B&logoColor=FFFFFF&label=)
@@ -63,8 +87,8 @@ screen hooked up, and see how many WiFi MAC addresses are in your area!
 
 This project was developed using the Arduino IDE and an ESP32. You can get the
 project running locally using `git clone` and then opening the main
-`compsci-412-project.ino` in the Arduino IDE. You'll need an actual ESP32 to run
-the code!
+`person-counter.ino` in the Arduino IDE. You'll need an actual ESP32 to run the
+code!
 
 <!-- prettier-ignore-start -->
 [adafruit huzzah32]: https://www.adafruit.com/product/3405
@@ -73,4 +97,5 @@ the code!
 [16x2 LCD screens on Amazon]: https://www.amazon.com/s?k=arduino+16x2+lcd
 [Makerfabs/Project_WiFi-Statistics]: https://github.com/Makerfabs/Project_WiFi-Statistics#readme
 [ESP-EOS/ESP32-WiFi-Sniffer]: https://github.com/ESP-EOS/ESP32-WiFi-Sniffer#readme
+[this is not legal advice]: https://notlegaladvice.law/
 <!-- prettier-ignore-end -->
