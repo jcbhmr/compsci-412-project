@@ -53,6 +53,9 @@ To configure the hardware, you should match this circuit:
 You'll also need to install the "FreeRTOS" library from the Arduino Library
 Manager. We need this library to use the `vTaskDelay()` function.
 
+📚 Getting started: [Installing ESP32 in Arduino IDE (Windows, Mac OS X, Linux)
+| Random Nerd Tutorials]
+
 ## Usage
 
 Once you've downloaded the application code to your ESP32, you just need to
@@ -98,4 +101,5 @@ code!
 [Makerfabs/Project_WiFi-Statistics]: https://github.com/Makerfabs/Project_WiFi-Statistics#readme
 [ESP-EOS/ESP32-WiFi-Sniffer]: https://github.com/ESP-EOS/ESP32-WiFi-Sniffer#readme
 [this is not legal advice]: https://notlegaladvice.law/
+[Installing ESP32 in Arduino IDE (Windows, Mac OS X, Linux) | Random Nerd Tutorials]: https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/
 <!-- prettier-ignore-end -->
