@@ -1,8 +1,6 @@
-<!-- ![🗝️ Archived! 👴](https://i.imgur.com/9vmkYS4.png) -->
+# MAC address counter
 
-# Person counter
-
-👨‍👩‍👧‍👦 WiFi person count estimator \
+👨‍👩‍👧‍👦 Estimate the number of people using WiFi emanations \
 💡 Based on [Makerfabs/Project_WiFi-Statistics] and [ESP-EOS/ESP32-WiFi-Sniffer]
 
 <div align="center">
