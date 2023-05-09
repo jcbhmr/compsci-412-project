@@ -98,8 +98,8 @@ are pretty cool! 😲
 
 This project was developed using the Arduino IDE and an ESP32. You can get the
 project running locally using `git clone` and then opening the main
-`person-counter.ino` in the Arduino IDE. You'll need an actual ESP32 to run the
-code!
+`mac-addr-counter.ino` in the Arduino IDE. You'll need an actual ESP32 to run
+the code!
 
 <!-- prettier-ignore-start -->
 [adafruit huzzah32]: https://www.adafruit.com/product/3405
