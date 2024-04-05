@@ -1,7 +1,7 @@
 # MACounter
 
 👨‍👩‍👧‍👦 Estimate the number of people using WiFi emanations \
-💡 Based on [Makerfabs/Project_WiFi-Statistics](https://github.com/Makerfabs/Project_WiFi-Statistics#readme) and [ESP-EOS/ESP32-WiFi-Sniffer](https://github.com/ESP-EOS/ESP32-WiFi-Sniffer#readme)
+💡 Inspired by [Makerfabs/Project_WiFi-Statistics](https://github.com/Makerfabs/Project_WiFi-Statistics#readme) and [ESP-EOS/ESP32-WiFi-Sniffer](https://github.com/ESP-EOS/ESP32-WiFi-Sniffer#readme)
 
 <div align="center">
 
